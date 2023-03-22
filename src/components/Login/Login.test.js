@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from './Login'
 
@@ -69,4 +69,26 @@ test('When the user clicks on checkbox, it should be marked as checked',async ()
         // Make sure once user clicks the checkbox is checked
         expect(chkbx).toBeChecked()
     })
+})
+
+// When user enters name, it should update username state
+test('Username state is updated everytime user enters name in username field',()=>{
+    render(<Login/>)
+    // Test value
+    const testValue = 'asdf'
+    const userNameField = screen.getByPlaceholderText('Enter username')
+    // Simalate the user entering the username in user name field
+    fireEvent.change(userNameField, {target:{value:testValue}})
+    expect(userNameField.value).toBe(testValue)
+})
+
+// When user enters password, it should update password state
+test('Password state is updated everytime user enters password in password field',()=>{
+    render(<Login/>)
+    // Test value
+    const testValue = 'asdf'
+    const passwordField = screen.getByPlaceholderText('Enter password')
+    // Simalate the user entering the pass in password field
+    fireEvent.change(passwordField, {target:{value:testValue}})
+    expect(passwordField.value).toBe(testValue)
 })

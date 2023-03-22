@@ -1,8 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
+
 import { Avatar, Grid, Paper, TextField, Button, Typography, Checkbox, Link } from '@mui/material'
 import { LockOutlined } from '@mui/icons-material'
 
+
 export default function Login() {
+
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
 
   const paperStyle = {
     width:"300px",
@@ -30,8 +36,21 @@ export default function Login() {
             <Avatar style={avatarStyle}><LockOutlined/></Avatar>
           </Grid>
           <Grid align='center'  paddingX={3}>
-            <TextField label='Username' placeholder='Enter username' fullWidth style={inputFieldStyle} />
-            <TextField label='Password' type={'password'} placeholder='Enter password' fullWidth style={inputFieldStyle} />
+            <TextField 
+            label='Username' 
+            placeholder='Enter username' 
+            defaultValue={userName}
+            onChange={(event)=>setUserName(event.target.value)} 
+            fullWidth 
+            style={inputFieldStyle} />
+            <TextField 
+            label='Password' 
+            type={'password'} 
+            placeholder='Enter password' 
+            defaultValue={password} 
+            onChange={(event)=>setPassword(event.target.value)}
+            fullWidth 
+            style={inputFieldStyle} />
           </Grid>
           <Grid align='left' paddingLeft={1.5}>
           <Checkbox align='left'/>Remember Me
