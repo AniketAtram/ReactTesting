@@ -31,7 +31,7 @@ export default function Login() {
           </Grid>
           <Grid align='center'  paddingX={3}>
             <TextField label='Username' placeholder='Enter username' fullWidth style={inputFieldStyle} />
-            <TextField label='Password' placeholder='Enter password' fullWidth style={inputFieldStyle} />
+            <TextField label='Password' type={'password'} placeholder='Enter password' fullWidth style={inputFieldStyle} />
           </Grid>
           <Grid align='left' paddingLeft={1.5}>
           <Checkbox align='left'/>Remember Me
@@ -45,7 +45,7 @@ export default function Login() {
             </Typography>
             <Typography>
                Dont have account? 
-              <Link href='#' style={linkStyle}> Signup</Link>
+              <Link href='/signup' style={linkStyle}> Signup</Link>
             </Typography>
           </Grid>
         </Paper>

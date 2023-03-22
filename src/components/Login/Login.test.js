@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Login from './Login'
 
 // The Sign In text is rendered
@@ -49,4 +50,23 @@ test('There should be two links present in the login page',()=>{
     render(<Login/>)
     const links = screen.getAllByRole('link')
     expect(links.length).toEqual(2)
+})
+
+
+// The check box default behaviour should be unchecked
+test('The checkbox should not be checked by default',()=>{
+    render(<Login/>)
+    const chkbx = screen.getByRole('checkbox')
+    expect(chkbx).not.toBeChecked()
+})
+// After clicking the check box the checkbox should be checked
+test('When the user clicks on checkbox, it should be marked as checked',async ()=>{
+    render(<Login/>)
+    const chkbx = screen.getByRole('checkbox')
+    // Simulate the click event
+    await waitFor(()=>{
+        userEvent.click(chkbx)
+        // Make sure once user clicks the checkbox is checked
+        expect(chkbx).toBeChecked()
+    })
 })
